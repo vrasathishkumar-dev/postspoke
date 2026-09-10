@@ -45,3 +45,11 @@ def test_get_next_n_post_times_zero_returns_empty():
     start_time = datetime(2026, 9, 10, 10, 0, 0)
     result = get_next_n_post_times(start_time, 30, 0)
     assert result == []
+
+
+def test_get_next_n_post_times_negative_n_raises():
+    """Test that negative n raises ValueError."""
+    from postspoke.scheduler import get_next_n_post_times
+    start_time = datetime(2026, 9, 10, 10, 0, 0)
+    with pytest.raises(ValueError):
+        get_next_n_post_times(start_time, 30, -1)

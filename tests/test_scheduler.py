@@ -19,3 +19,8 @@ def test_get_next_post_time_wraps_hour():
     expected = datetime(2026, 9, 10, 11, 15, 0)
     result = get_next_post_time(start_time, interval_minutes)
     assert result == expected
+
+def test_get_next_post_time_negative_interval_raises():
+    from datetime import datetime
+    with pytest.raises(ValueError):
+        get_next_post_time(datetime.now(), -10)
